@@ -53,7 +53,7 @@ CREATE TABLE `tbl_refemployeur` (
   `refEmp_titre_RAF` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `refEmp_titre_honorifique_RAF` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `refEmp_assujeti_PTA` tinyint(1) NOT NULL DEFAULT '0',
-  `info_logo` mediumblob,
+  `refEmp_logo` mediumblob,
   PRIMARY KEY (`refEmp_sigle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Les informations de la structure employeur';
 
