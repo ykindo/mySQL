@@ -1,7 +1,10 @@
+import datetime
+
+
 class Calcul_rubriques_salaire:
 
     def __init__(self, info_matricule, info_nom, info_prenom, info_telephone, info_email, info_dateNaissance,
-                 info_dateEmbaucge, info_datePaie, info_salaireBase, info_indemniteLogement, info_indemniteFonction,
+                 info_dateEmbauche, info_datePaie, info_salaireBase, info_indemniteLogement, info_indemniteFonction,
                  info_indemniteTransport, info_indemniteSujetion, info_indemniteTechnicite, info_indemniteCaisse,
                  info_indemniteAutres, info_autresPrimes, info_avantagesNatureImmobilisation,
                  info_avantagesNatureEmploye, info_allocationFamilliale, info_montantHeuresSupplementaires,
@@ -14,7 +17,7 @@ class Calcul_rubriques_salaire:
         self.info_telephone = info_telephone
         self.info_email = info_email
         self.info_dateNaissance = info_dateNaissance
-        self.info_dateEmbaucge = info_dateEmbaucge
+        self.info_dateEmbauche = info_dateEmbauche
         self.info_datePaie = info_datePaie
         self.info_salaireBase = info_salaireBase
         self.info_indemniteLogement = info_indemniteLogement
@@ -42,19 +45,22 @@ class Calcul_rubriques_salaire:
         self.info_ifuEmployeur = info_ifuEmployeur
 
     def prime_anciennete(self):
-        pass
+        if int((self.info_datePaie - self.info_dateEmbauche).days/365.25) >= 3:
+            prime_anciennete = (0.05 + (int((self.info_datePaie - self.info_dateEmbauche).days/365.25) - 3)*0.01) * self.info_salaireBase
+        else:
+            prime_anciennete = 0
 
     def salaire_brut_en_numeraire(self):
-        pass
+        salaire_brut_en_numeraire = self.info_salaireBase + self.info_indemniteLogement + self.info_indemniteFonction + self.info_indemniteTransport + self.prime_anciennete()
 
     def taux_avantage_en_nature(self):
-        pass
+        taux_avantage_en_nature = self.info_avantagesNatureImmobilisation/240 + (1+0.03+0.16)*self.info_avantagesNatureEmploye
 
     def salaire_brut_total(self):
-        pass
+        salaire_brut_total = self.salaire_brut_en_numeraire() + self.taux_avantage_en_nature()
 
     def cnss_employe(self):
-        pass
+        cnss_employe = min(600000*0.055, self.salaire_brut_en_numeraire() * 0.055)
 
     def salaire_de_base_brut_imposable(self):
         pass

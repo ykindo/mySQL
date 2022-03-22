@@ -80,7 +80,7 @@ CREATE TABLE `tbl_infoemploye` (
   `info_telephone` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `info_email` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `info_dateNaissance` date DEFAULT NULL,
-  `info_dateEmbaucge` date DEFAULT NULL,
+  `info_dateEmbauche` date DEFAULT NULL,
   `info_datePaie` date DEFAULT NULL,
   `info_salaireBase` float DEFAULT NULL,
   `info_indemniteLogement` float DEFAULT NULL,
