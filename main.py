@@ -1,8 +1,10 @@
 from kivy.app import App
 
 
-class GestionDePaieApp(App):
+
+class gestiondepaieApp(App):
     pass
 
 
-GestionDePaieApp().run()
+gestiondepaieApp().run()
+
