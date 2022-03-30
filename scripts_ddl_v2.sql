@@ -31,7 +31,7 @@ CREATE TABLE `tbl_refemployeur` (
   `refEmp_premon_RAF` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `refEmp_titre_RAF` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `refEmp_titre_honorifique_RAF` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `refEmp_assujeti_PTA` tinyint(1) NOT NULL DEFAULT '0',
+  `refEmp_assujeti_PTA` tinyint(1) NOT NULL DEFAULT '1',
   `refEmp_logo` mediumblob,
   PRIMARY KEY (`refEmp_num_IFU`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Les informations de la structure employeur';
@@ -47,14 +47,12 @@ CREATE TABLE `tbl_user` (
   `user_num_telephone` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `user_civilite` varchar(50) DEFAULT NULL,
   `user_email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `user_ifuEmployeur` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `user_Photo` mediumblob,
+  `user_ifu_employeur` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `user_photo` mediumblob,
   PRIMARY KEY (`user_id`),
-  KEY `tbl_user_FK` (`user_ifuEmployeur`),
-  CONSTRAINT `tbl_user_FK` FOREIGN KEY (`user_ifuEmployeur`) REFERENCES `tbl_refemployeur` (`refEmp_num_IFU`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `tbl_user_FK` (`user_ifu_employeur`),
+  CONSTRAINT `tbl_user_FK` FOREIGN KEY (`user_ifu_employeur`) REFERENCES `tbl_refemployeur` (`refEmp_num_IFU`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='Table des utilisateurs';
-
-
 
 -- gestion_de_paie.tbl_grillesalaire definition
 
@@ -63,8 +61,6 @@ CREATE TABLE `tbl_grillesalaire` (
   `grilleSalaire_salaire_base` double NOT NULL,
   PRIMARY KEY (`grilleSalaire_categorie`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='La grille salariale des employés';
-
-
 
 
 -- gestion_de_paie.tbl_infoemploye definition
@@ -172,7 +168,6 @@ CREATE TABLE `tbl_journalmaj` (
   KEY `tbl_journaldesmaj_FK` (`journaldesmaj_matricule`),
   CONSTRAINT `tbl_journaldesmaj_FK` FOREIGN KEY (`journaldesmaj_matricule`) REFERENCES `tbl_infoemploye` (`info_matricule`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 
 
 
